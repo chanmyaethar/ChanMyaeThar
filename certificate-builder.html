@@ -34,6 +34,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 @media(max-width:1050px){.layout{grid-template-columns:1fr}.previewpanel{position:static}.paperViewport{max-width:610px}.intro{padding-top:18px}}
 @media(max-width:550px){.layout{padding:7px 9px 30px;gap:12px}.panel{padding:11px;border-radius:11px}.formGrid{grid-template-columns:1fr}.field.wide{grid-column:auto}.intro{padding:18px 15px 8px}.top{padding:10px 12px}.topnav a{font-size:10px}}
 @media print{*{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}body{margin:0;background:white}.top,.intro,.formpanel,.panelhead,.previewfooter,.smalltip,.privacy{display:none!important}.layout{display:block;margin:0;padding:0}.previewpanel{padding:0;border:0;box-shadow:none}.paperViewport{width:100%;max-width:none;box-shadow:none;aspect-ratio:1086/1536}.paperStage{transform:scale(var(--printScale, 1))!important}@page{size:A4 portrait;margin:0}}
+[hidden]{display:none!important}.prefix-options{display:flex;flex-wrap:wrap;gap:11px;padding:9px 2px}.prefix-options label{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600}.prefix-options input{width:16px;height:16px;accent-color:#861525}.option-group{padding:10px 12px;border:1px solid #eadfcf;border-radius:10px;background:#fffaf4}
 </style>
 <style>
 /* Calendar conversion module · certificate-builder · independent of page body */
@@ -95,17 +96,32 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 <p class="smalltip">စာပိုဒ်ကို Mouse နဲ့ ဖိဆွဲပြီး နေရာရွှေ့နိုင်ပါတယ်။ အောက်က Setting နဲ့ စာအရွယ်အစားညှိနိုင်ပါတယ်။</p></section>
 <section class="panel formpanel"><div class="formTitle"><h2>အချက်အလက် ဖြည့်ရန်</h2><span>Blank နေရာများ</span></div>
 <div class="formGrid" id="fields">
-<div class="field"><label for="region">တိုင်းဒေသကြီး</label><input id="region" autocomplete="off" placeholder="ဥပမာ — ရန်ကုန်"></div>
-<div class="field"><label for="township">မြို့နယ်</label><input id="township" autocomplete="off" placeholder="ဥပမာ — လှည်းကူး"></div>
-<div class="field"><label for="dedicate">အား ရည်စူး၍ (အမည်)</label><input id="dedicate" autocomplete="off" placeholder="ရည်စူးမည့်သူ"></div>
-<div class="field"><label for="honor">အား အမှူးထားလျက် (အမည်)</label><input id="honor" autocomplete="off" placeholder="အမှူးထားမည့်သူ"></div>
-<div class="field wide"><label for="patronTitle">ဒါယကာ / ဒါယိကာမ အမျိုးအစား</label><select id="patronTitle"><option>ဘုရား၊ သိမ်ကျောင်း၊ ရဟန်းဒါယကာကြီး</option><option>ဘုရား၊ သိမ်ကျောင်း၊ ရဟန်းဒါယိကာမကြီး</option><option>ဘုရား၊ သိမ်ကျောင်း၊ ရဟန်းဒါယကာကြီးနှင့် ဒါယိကာမကြီး</option></select></div>
-<div class="field"><label for="patron">ဒါယကာ / ဒါယိကာမ အမည်</label><input id="patron" autocomplete="off" placeholder="အမည်"></div>
-<div class="field"><label for="family">မိသားစုမှ</label><input id="family" autocomplete="off" placeholder="မိသားစုအမည်"></div>
-<div class="field wide"><label for="purpose">အတွက် (အနီရောင် စာပိုဒ်)</label><input id="purpose" autocomplete="off" placeholder="ဥပမာ — ချမ်းမြေ့သာ သာသနာ့ရိပ်သာကျောင်းတိုက်"></div>
-<div class="field"><label for="day">နေ့တွင် ကျရောက်သော</label><input id="day" autocomplete="off" placeholder="ဥပမာ — ၁၀-၁၀-၂၀၂၆"></div>
-<div class="field"><label for="merit">ကုသိုလ်အဖြည့်</label><input id="merit" autocomplete="off" placeholder="ဥပမာ — မွေးနေ့ / နှစ်ပတ်လည်"></div>
-<div class="field wide"><label for="offering">လှူဒါန်းမှု (အပြာရောင် စာပိုဒ်)</label><textarea id="offering" rows="2" placeholder="ဥပမာ — မီးစက်တစ်လုံး၊ အလှူငွေ၊ ဆွမ်းနှင့် ပစ္စည်းလေးပါး"></textarea></div>
+<div class="field"><label for="region">တိုင်းဒေသကြီး / ပြည်နယ် (မရှိလျှင် ချန်ထားနိုင်သည်)</label><input id="region" autocomplete="off" placeholder="ဥပမာ — မွန်ပြည်နယ်"></div>
+<div class="field"><label for="township">မြို့ / မြို့နယ် (မရှိလျှင် ချန်ထားနိုင်သည်)</label><input id="township" autocomplete="off" placeholder="ဥပမာ — မော်လမြိုင်မြို့"></div>
+<div class="field"><label for="dedicateMode">အား ရည်စူး၍</label><select id="dedicateMode"><option value="none">မရှိပါ / မထည့်ပါ</option><option value="include">ရည်စူး၍ ထည့်မည်</option></select></div>
+<div class="field" id="dedicateField" hidden><label for="dedicate">ရည်စူးမည့် ပုဂ္ဂိုလ်အမည်</label><input id="dedicate" autocomplete="off" placeholder="ဥပမာ — ကွယ်လွန်သူ ဒေါ်..."></div>
+<div class="field"><label for="honorMode">အား အမှူးထားလျက်</label><select id="honorMode"><option value="none">မရှိပါ / မထည့်ပါ</option><option value="include">အမှူးထားလျက် ထည့်မည်</option></select></div>
+<div class="field" id="honorField" hidden><label for="honor">အမှူးထားမည့် ပုဂ္ဂိုလ်အမည်</label><input id="honor" autocomplete="off" placeholder="ဥပမာ — ကျေးဇူးရှင် မိဘများ"></div>
+<div class="field wide"><label for="patronTitle">ဘွဲ့ဂုဏ်ပုဒ် (မရွေးလျှင် မထည့်ပါ)</label><select id="patronTitle"><option value="">မရှိပါ / မထည့်ပါ</option><option value="ဒါယကာကြီး">ဒါယကာကြီး</option><option value="ဒါယိကာမကြီး">ဒါယိကာမကြီး</option><option value="custom">စိတ်ကြိုက် ဂုဏ်ပုဒ်</option></select></div>
+<div class="field wide option-group" id="patronPrefixArea" hidden>
+<label>အောက်ပါဂုဏ်ပုဒ်များကို လိုအပ်မှသာရွေးပါ (အားလုံး မရွေးလည်းရသည်)</label>
+<div class="prefix-options">
+<label><input type="checkbox" name="patronPrefix" value="ဘုရား"> ဘုရား</label>
+<label><input type="checkbox" name="patronPrefix" value="သိမ်"> သိမ်</label>
+<label><input type="checkbox" name="patronPrefix" value="ကျောင်း"> ကျောင်း</label>
+<label><input type="checkbox" name="patronPrefix" value="ရဟန်း"> ရဟန်း</label>
+</div>
+</div>
+<div class="field wide" id="customPatronField" hidden><label for="customPatronTitle">စိတ်ကြိုက်ဂုဏ်ပုဒ်</label><input id="customPatronTitle" autocomplete="off" placeholder="ဥပမာ — သဒ္ဓါရှင်"></div>
+<div class="field"><label for="patron">အလှူရှင်အမည်</label><input id="patron" autocomplete="off" placeholder="ဦး... / ဒေါ်..."></div>
+<div class="field"><label for="family">မိသားစု / အခြားအမည် (ရှိမှထည့်ရန်)</label><input id="family" autocomplete="off" placeholder="မရှိလျှင် ချန်ထားပါ"></div>
+<div class="field wide"><label for="familySuffix">အလှူရှင်အမည် နောက်ဆက်</label><select id="familySuffix"><option value="">မရှိပါ / မထည့်ပါ</option><option value="၏">၏</option><option value="မိသားစုမှ">မိသားစုမှ</option><option value="မှ">မှ</option><option value="တို့မှ">တို့မှ</option></select></div>
+<div class="field wide"><label for="purpose">အတွက် / ရည်ရွယ်ချက် (အနီရောင် စာပိုဒ်)</label><input id="purpose" autocomplete="off" placeholder="ဥပမာ — မွေးနေ့အထိမ်းအမှတ်"></div>
+<div class="field"><label for="day">နေ့ရက် (မရှိလျှင် မထည့်ပါ)</label><input id="day" autocomplete="off" placeholder="ဥပမာ — ၁၂-၁၁-၂၀၂၆"></div>
+<div class="field"><label for="merit">ကုသိုလ်အဖြည့် / အထိမ်းအမှတ်</label><input id="merit" autocomplete="off" placeholder="ဥပမာ — မွေးနေ့"></div>
+<div class="field wide"><label for="offering">လှူဒါန်းသည့်အကြောင်းအရာ (အပြာရောင် စာပိုဒ်)</label><textarea id="offering" rows="2" placeholder="ဥပမာ — စေတီတော်တည်ထားပူဇော်ခြင်း၊ ဆွမ်း၊ သင်္ကန်း"></textarea></div>
+<div class="field"><label for="offeringAmount">အလှူငွေ ကျပ် (မရှိလျှင် မထည့်ပါ)</label><input id="offeringAmount" autocomplete="off" placeholder="ဥပမာ — ၁၀၀,၀၀၀"></div>
+<div class="field"><label for="extraOffering">အခြားလှူဒါန်းမှု (ရှိမှထည့်ရန်)</label><input id="extraOffering" autocomplete="off" placeholder="ဥပမာ — ဆန်၊ ဆီ"></div>
 </div>
 <section class="cal-section" aria-label="Gregorian နှင့် Myanmar calendar date converter">
  <div class="cal-heading"><h2>မြန်မာပြက္ခဒိန် · Date Converter</h2><span class="cal-pill">Gregorian ⇄ Myanmar</span></div>
@@ -128,7 +144,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 <div class="settingRow"><label for="fontsize">စာအရွယ်အစား</label><input id="fontsize" type="range" min="17" max="42" value="28"><span class="val" id="fontval">28 px</span></div>
 <div class="settingRow"><label for="linegap">စာကြောင်းအကွာအဝေး</label><input id="linegap" type="range" min="1.1" max="1.9" value="1.43" step="0.05"><span class="val" id="lineval">1.43</span></div>
 <div class="settingRow"><label for="toppos">စာပိုဒ် အပေါ်/အောက်</label><input id="toppos" type="range" min="450" max="740" value="496" step="2"><span class="val" id="topval">496 px</span></div>
-<div class="settingRow"><label><input id="blanks" type="checkbox" checked> မဖြည့်ရသေးသော နေရာများပြရန်</label></div>
+<p class="smalltip">မဖြည့်ထားသောအချက်အလက်များကို Certificate အလယ်စာပိုဒ်တွင် အလိုအလျောက် ချန်ထားပါမည်။</p>
 <div class="toolbar"><button class="btn" id="copy">စာပိုဒ် Copy</button><button class="btn" id="reset">Form ရှင်းရန်</button></div>
 <hr class="rule"><div class="formTitle"><h2>အလိုအလျောက် စာပိုဒ်</h2><span>အလယ်ညှိပုံစံ</span></div><textarea class="generated" id="paragraph" readonly spellcheck="false"></textarea><p class="status" id="status" aria-live="polite"></p><p class="privacy">ဖြည့်ထားတဲ့အချက်အလက်တွေကို Server သို့ မပို့ပါ။ ဒီ Browser tab ပိတ်တဲ့အခါ Form data ကို အလိုအလျောက် ဖျက်ပေးပါတယ်။</p>
 </section></main>
@@ -137,27 +153,51 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 (()=>{
 'use strict';
 const WIDTH=1086,HEIGHT=1536,$=id=>document.getElementById(id);
-const keys=['region','township','dedicate','honor','patronTitle','patron','family','purpose','day','merit','offering','footerDate'];
+const keys=['region','township','dedicateMode','dedicate','honorMode','honor','patronTitle','customPatronTitle','patron','family','familySuffix','purpose','day','merit','offering','offeringAmount','extraOffering','footerDate'];
 const regionWords=['တိုင်းဒေသကြီး','ပြည်နယ်'];
 const cfg={x:100,y:496,w:886,font:28,line:1.43};
  const dateCfg={x:358,y:1284,w:370,h:39,font:21};
 let bgSrc=$('background').src,drag=null;
-const read=id=>$(id).value.trim().replace(/\s+/g,' ');
-const blank=id=>read(id)||($('blanks').checked?'________':'');
-const comma=(str)=>str.trim().replace(/\s+/g,' ');
+const read=id=>($(id)?.value||'').trim().replace(/\\s+/g,' ');
+const regionWords=['တိုင်းဒေသကြီး','ပြည်နယ်','နယ်'];
+function updateConditional(){
+ $('dedicateField').hidden=$('dedicateMode').value!=='include';
+ $('honorField').hidden=$('honorMode').value!=='include';
+ const title=$('patronTitle').value;
+ $('patronPrefixArea').hidden=!['ဒါယကာကြီး','ဒါယိကာမကြီး'].includes(title);
+ $('customPatronField').hidden=title!=='custom';
+}
 function pieces(){
- const region=blank('region'),township=blank('township'),ded=blank('dedicate'),hon=blank('honor'),pat=blank('patron'),family=blank('family'),purpose=blank('purpose'),day=blank('day'),merit=blank('merit'),offering=blank('offering');
- const suffix=regionWords.some(word=>region.endsWith(word))?'': ' တိုင်းဒေသကြီး';
- const where=comma(`${region}${suffix}၊ ${township}${township.endsWith('မြို့နယ်')?'':' မြို့နယ်'}နေ`);
- return [
-  {class:'black',text:where},
-  {class:'black',text:`${ded} အား ရည်စူး၍ ${hon} အား အမှူးထားလျက်`},
-  {class:'black',text:`${read('patronTitle')} ${pat} ${family} မိသားစုမှ`},
-  {class:'red',text:`${purpose} အတွက်`},
-  {class:'black',text:`${day} နေ့တွင် ကျရောက်သော ${merit} ကုသိုလ်အဖြည့်`},
-  {class:'blue',text:`${offering} လှူဒါန်းပါသဖြင့်`},
-  {class:'closing',text:'ဤအနုမောဒနာဂုဏ်ပြုလွှာဖြင့် မှတ်တမ်းတင် ဂုဏ်ပြုအပ်ပါသည်။'}
- ];
+ const parts=[];
+ const region=read('region'),township=read('township');
+ if(region||township){
+   const r=region?(regionWords.some(w=>region.endsWith(w))?region:region+' တိုင်းဒေသကြီး'):'';
+   const t=township?(township.endsWith('မြို့နယ်')||township.endsWith('မြို့')?township:township+' မြို့နယ်'):'';
+   parts.push({class:'black',text:[r,t].filter(Boolean).join('၊ ')+'နေ'});
+ }
+ const dedicate=read('dedicate');
+ if($('dedicateMode').value==='include'&&dedicate)parts.push({class:'black',text:dedicate+'အား ရည်စူး၍'});
+ const honor=read('honor');
+ if($('honorMode').value==='include'&&honor)parts.push({class:'black',text:honor+'အား အမှူးထားလျက်'});
+ let title=$('patronTitle').value;
+ if(title==='custom')title=read('customPatronTitle');
+ else if(title){
+    const prefixes=[...document.querySelectorAll('input[name="patronPrefix"]:checked')].map(el=>el.value);
+    title=prefixes.length ? prefixes.join('၊ ')+title : title;
+ }
+ const donor=[title,read('patron'),read('family')].filter(Boolean).join(' ');
+ if(donor){const suffix=read('familySuffix');parts.push({class:'black',text:donor+(suffix?' '+suffix:'')});}
+ const purpose=read('purpose');
+ if(purpose)parts.push({class:'red',text:purpose+(/(အတွက်|အဖြစ်)$/.test(purpose)?'':' အတွက်')});
+ const day=read('day'),merit=read('merit');
+ const occ=[day?day+' ရက်နေ့တွင် ကျရောက်သော':'',merit?(merit+(/(ကုသိုလ်အဖြည့်|ကုသိုလ်အဖြစ်|ကုသိုလ်တော်အဖြစ်)$/.test(merit)?'':' ကုသိုလ်အဖြည့်')):''].filter(Boolean).join(' ');
+ if(occ)parts.push({class:'black',text:occ});
+ const offering=read('offering'),amount=read('offeringAmount'),extra=read('extraOffering');
+ const amountText=amount?('('+amount+')'+(/ကျပ်$/.test(amount)?'':' ကျပ်')):'';
+ const offerings=[offering,amountText,extra].filter(Boolean).join('၊ ');
+ if(offerings)parts.push({class:'blue',text:offerings+' တို့ကို ဆက်ကပ်လှူဒါန်းပါသဖြင့်'});
+ parts.push({class:'closing',text:'ဤအနုမောဒနာဂုဏ်ပြုလွှာဖြင့် မှတ်တမ်းတင် ဂုဏ်ပြုအပ်ပါသည်။'});
+ return parts;
 }
 function fit(){const copy=$('copyblock');let fs=cfg.font;copy.style.lineHeight=String(cfg.line);copy.style.gap='5px';
  for(;fs>=17;fs--){copy.style.fontSize=fs+'px';copy.querySelectorAll('p').forEach(p=>p.style.lineHeight=String(cfg.line));if(copy.scrollHeight<=copy.clientHeight+1)break;}
@@ -183,12 +223,12 @@ function paintFooterDate(){
  $('paragraph').value=pieces().map(x=>x.text).join('\n');$('topval').textContent=cfg.y+' px';$('lineval').textContent=cfg.line.toFixed(2);paintFooterDate();}
 function rescale(){const viewport=$('viewport');const factor=viewport.clientWidth/WIDTH;$('stage').style.transform=`scale(${factor})`;document.documentElement.style.setProperty('--printScale',String(factor));}
 function update(){cfg.font=Number($('fontsize').value);cfg.line=Number($('linegap').value);cfg.y=Number($('toppos').value);paint();}
-keys.forEach(id=>$(id).addEventListener(id==='patronTitle'?'change':'input',paint));
-$('blanks').addEventListener('change',paint);['fontsize','linegap','toppos'].forEach(id=>$(id).addEventListener('input',update));
+keys.forEach(id=>{const el=$(id);el.addEventListener('input',()=>{updateConditional();paint();});el.addEventListener('change',()=>{updateConditional();paint();});});
+document.querySelectorAll('input[name="patronPrefix"]').forEach(el=>el.addEventListener('change',paint));['fontsize','linegap','toppos'].forEach(id=>$(id).addEventListener('input',update));
  $('dateFont').addEventListener('input',()=>{dateCfg.font=Number($('dateFont').value);paintFooterDate();});
 $('center').addEventListener('click',()=>{cfg.x=Math.round((WIDTH-cfg.w)/2);paint();message('စာပိုဒ်ကို အလယ်ညှိပြီးပါပြီ။')});
  $('centerDate').addEventListener('click',()=>{dateCfg.x=Math.round((WIDTH-dateCfg.w)/2);dateCfg.y=1284;paintFooterDate();message('အနီရောင်ဘောင်ထဲက ရက်စွဲကို အလယ်ညှိပြီးပါပြီ။');});
-$('reset').addEventListener('click',()=>{if(!confirm('Form ထဲက အချက်အလက်အားလုံး ရှင်းမလား?'))return;keys.forEach(k=>{if(k==='patronTitle')$(k).selectedIndex=0;else $(k).value='';});cfg.x=100;cfg.y=496;cfg.font=28;cfg.line=1.43;$('fontsize').value=28;$('linegap').value=1.43;$('toppos').value=496;dateCfg.x=358;dateCfg.y=1284;dateCfg.font=21;$('dateFont').value=21;$('blanks').checked=true;paint();message('Form ကို ရှင်းပြီးပါပြီ။');});
+$('reset').addEventListener('click',()=>{if(!confirm('Form ထဲက အချက်အလက်အားလုံး ရှင်းမလား?'))return;keys.forEach(k=>{if($(k).tagName==='SELECT')$(k).selectedIndex=0;else $(k).value='';});document.querySelectorAll('input[name="patronPrefix"]').forEach(el=>el.checked=false);updateConditional();cfg.x=100;cfg.y=496;cfg.font=28;cfg.line=1.43;$('fontsize').value=28;$('linegap').value=1.43;$('toppos').value=496;dateCfg.x=358;dateCfg.y=1284;dateCfg.font=21;$('dateFont').value=21;paint();message('Form ကို ရှင်းပြီးပါပြီ။');});
 function message(str){$('status').textContent=str;}
 $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('paragraph').value);message('စာပိုဒ် Copy လုပ်ပြီးပါပြီ။');}catch{ $('paragraph').select();document.execCommand('copy');message('စာပိုဒ် Copy လုပ်ပြီးပါပြီ။');}});
 $('backgroundFile').addEventListener('change',e=>{const file=e.target.files?.[0];if(!file)return;if(!/^image\/(png|jpeg|webp)$/.test(file.type)||file.size>15e6){alert('PNG/JPG/WebP (15MB အောက်) ကိုသာ ရွေးပါ');return;}const reader=new FileReader();reader.onload=()=>{bgSrc=reader.result;$('background').src=bgSrc;message('နောက်ခံပုံပြောင်းပြီးပါပြီ။');};reader.readAsDataURL(file);e.target.value='';});
@@ -223,7 +263,7 @@ async function exportPNG(){const c=document.createElement('canvas'),scale=2;c.wi
 }
 $('download').addEventListener('click',()=>exportPNG().catch(err=>{console.error(err);message('PNG Export အမှား: '+err.message)}));
 $('print').addEventListener('click',()=>window.print());
-const ro=new ResizeObserver(rescale);ro.observe($('viewport'));window.addEventListener('resize',rescale);if(document.fonts?.ready)document.fonts.ready.then(paintFooterDate).catch(()=>{});paint();rescale();
+const ro=new ResizeObserver(rescale);ro.observe($('viewport'));window.addEventListener('resize',rescale);if(document.fonts?.ready)document.fonts.ready.then(paintFooterDate).catch(()=>{});updateConditional();paint();rescale();
 })();
 </script>
 <script>
