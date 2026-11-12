@@ -158,7 +158,7 @@ const regionWords=['တိုင်းဒေသကြီး','ပြည်နယ
 const cfg={x:100,y:496,w:886,font:28,line:1.43};
  const dateCfg={x:358,y:1284,w:370,h:39,font:21};
 let bgSrc=$('background').src,drag=null;
-const read=id=>($(id)?.value||'').trim().replace(/\\s+/g,' ');
+const read=id=>($(id)?.value||'').trim().replace(/\s+/g,' ');
 const regionWords=['တိုင်းဒေသကြီး','ပြည်နယ်','နယ်'];
 function updateConditional(){
  $('dedicateField').hidden=$('dedicateMode').value!=='include';
