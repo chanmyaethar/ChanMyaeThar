@@ -6,3 +6,19 @@
 @media(max-width:850px){.desktop-nav,.nav-cta{display:none}.menu-toggle{display:block}.nav-wrap{justify-content:space-between;min-height:74px}.brand{min-width:0}.brand-logo{width:42px;height:42px}.mobile-nav:not([hidden]){display:flex;flex-direction:column;gap:0;background:white;border-top:1px solid var(--line);padding:12px 24px 22px;box-shadow:0 20px 40px #00000010}.mobile-nav a{padding:14px 6px;border-bottom:1px solid var(--line);font-size:13px}.mobile-nav a[aria-current=page]{color:var(--burgundy);font-weight:700}.hero{padding:55px 0}.hero .container{grid-template-columns:1fr;gap:20px}.hero-art{min-height:340px;order:-1}.hero-text{text-align:center}.hero-desc{margin-left:auto;margin-right:auto}.button-row{justify-content:center}.hero-note{margin-left:auto;margin-right:auto}.logo-disc{width:265px;height:265px}.hero-art:after{inset:6%;max-width:345px;max-height:345px;margin:auto}.hero-art:before{max-width:400px;max-height:400px;margin:auto}.section{padding:70px 0}.value-grid,.article-grid{grid-template-columns:repeat(2,1fr)}.split,.contact-grid{grid-template-columns:1fr}.editorial-art{height:300px}.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.container,.nav-wrap{width:calc(100% - 32px)}.hero-title{font-size:44px}.hero-art{min-height:290px}.logo-disc{width:215px;height:215px;padding:20px}.hero-caption{bottom:0;left:0;font-size:10px}.value-grid,.article-grid,.gallery-grid,.intro-grid,.form-group{grid-template-columns:1fr}.value-card{padding:25px}.section{padding:57px 0}.section-title{font-size:27px}.page-hero{padding:65px 0}.page-hero h1{font-size:31px}.cta-panel{flex-direction:column;text-align:center;padding:32px 24px}.footer-grid{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column}.contact-form,.panel{padding:22px}.bank-row{flex-direction:column;gap:5px}.nav-wrap{gap:6px}.brand-copy strong{font-size:13px}.brand-copy small{font-size:9px}.hero-desc{font-size:13px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* 2026 unified brand and accessibility polish */
+:root{--burgundy:#762338;--gold:#ba903f;--cream:#fcf8f1;--ivory:#fffdfa;--line:#e9e2d8;--shadow:0 18px 54px rgba(80,43,27,.09)}
+.brand-logo{display:block;width:54px;height:54px;max-width:none;flex:none;object-fit:contain;object-position:center;border-radius:50%;image-rendering:auto}
+.brand{gap:12px}.brand-copy strong{font-size:16px}.brand-copy small{font-size:11px}
+.logo-disc{border:1px solid #f0dfc2;background:radial-gradient(circle,#fff 58%,#fff9eb 100%);box-shadow:0 25px 76px #693f3126}
+.logo-disc .brand-logo{width:100%;height:100%}
+.nav-link.cert-entry{color:#732337;font-weight:750}
+.btn,.nav-cta,.language-button,.copy-button{min-height:44px}
+.btn:focus-visible,.nav-cta:focus-visible,.nav-link:focus-visible{outline:3px solid #b98334;outline-offset:4px}
+.resource-card,.value-card,.panel,.contact-form,.gallery-tile{box-shadow:0 5px 24px rgba(53,38,24,.025)}
+.site-footer .brand-logo{width:54px;height:54px}
+.contact-form input,.contact-form textarea{background:#fff;min-height:44px}.contact-form label{font-size:13px}
+@media(max-width:850px){.brand-logo{width:44px;height:44px}.mobile-nav a{min-height:44px}.nav-wrap{gap:10px}}
+@media(max-width:560px){.hero{padding-top:28px}.brand-copy strong{font-size:14px}.brand-copy small{font-size:10px}.btn{min-height:46px}.mobile-nav{max-height:75vh;overflow:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
