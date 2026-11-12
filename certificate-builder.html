@@ -35,6 +35,55 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 @media(max-width:550px){.layout{padding:7px 9px 30px;gap:12px}.panel{padding:11px;border-radius:11px}.formGrid{grid-template-columns:1fr}.field.wide{grid-column:auto}.intro{padding:18px 15px 8px}.top{padding:10px 12px}.topnav a{font-size:10px}}
 @media print{*{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}body{margin:0;background:white}.top,.intro,.formpanel,.panelhead,.previewfooter,.smalltip,.privacy{display:none!important}.layout{display:block;margin:0;padding:0}.previewpanel{padding:0;border:0;box-shadow:none}.paperViewport{width:100%;max-width:none;box-shadow:none;aspect-ratio:1086/1536}.paperStage{transform:scale(var(--printScale, 1))!important}@page{size:A4 portrait;margin:0}}
 </style>
+<style>
+/* Calendar conversion module · certificate-builder · independent of page body */
+.cal-section{border:1px solid #e9dec6;border-radius:16px;background:linear-gradient(145deg,#fffdf8,#fff 46%,#fbfaf7);padding:18px;margin:22px 0 18px;box-shadow:0 8px 25px #60350009}
+.cal-heading{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cal-heading h2{margin:0;color:#762032;font-size:18px;font-weight:800}
+.cal-subtitle{font-size:11px;color:#70675d;margin:4px 0 16px}
+.cal-pill{border:1px solid #e1cda3;border-radius:30px;background:#fff8ea;padding:5px 9px;color:#936c29;font-size:10px;font-weight:800}
+.cal-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:12px 0}
+.cal-input{min-width:0;display:flex;flex-direction:column;gap:5px}
+.cal-input label{font-size:12px;font-weight:700;color:#4b4033}
+.cal-input select,.cal-input input{width:100%;min-height:42px;border:1px solid #e2ded5;border-radius:9px;background:#fff;padding:8px 10px;color:#292624;font:inherit;font-size:13px;min-width:0}
+.cal-input input:focus,.cal-input select:focus{border-color:#bf8e3f;outline:2px solid #edd8b5}
+.cal-tools{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:7px 0}
+.cal-tools button{padding:8px 11px;border-radius:9px;border:1px solid #dfd5c6;background:#fff;color:#65452b;font-size:11px;font-weight:800;cursor:pointer}
+.cal-tools button:hover{background:#fff4df}
+.cal-subheader{display:flex;align-items:center;gap:10px;margin-top:17px;color:#583c2c;font-weight:800;font-size:13px}
+.cal-subheader:after{content:"";height:1px;flex:1;background:#eae1d4}
+.cal-result{padding:15px 14px;background:#fff;border:1px solid #eadfc8;border-radius:12px;margin:15px 0}
+.cal-result .my-result{font-size:16px;font-weight:800;color:#762032;line-height:2}
+.cal-result .en-result{font-size:12px;color:#57514a;margin-top:2px}
+.cal-result .be-result{color:#98866d;font-size:11px;margin-top:5px}
+.cal-alert{font-size:11px;line-height:1.7;color:#8c2c2c;min-height:0;margin-top:6px}
+.cal-selectrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.cal-selectrow label{font-size:12px;color:#5c544a;font-weight:700}
+.cal-selectrow select{flex:1;min-width:170px;max-width:100%;min-height:40px;border:1px solid #e1dacd;border-radius:9px;padding:5px 8px;background:white;font-size:12px}
+.cal-checkrow{display:flex;align-items:center;gap:8px;margin:11px 0;font-size:12px;color:#585249;cursor:pointer}
+.cal-checkrow input{accent-color:#821d33;width:16px;height:16px;flex:none}
+.cal-checkrow .hint{display:inline;font-size:10px}
+.cal-month{border:1px solid #eae0cf;border-radius:12px;background:#fff;margin-top:14px;padding:10px}
+.cal-monthbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:3px 3px 10px}
+.cal-monthbar strong{font-size:13px;color:#4e3523;text-align:center}
+.cal-monthbar button{border:1px solid #e8ddc8;background:#fffdfa;border-radius:9px;min-width:35px;height:32px;cursor:pointer;color:#7e522b}
+.cal-monthbar button:hover{background:#f9f1e4}
+.cal-week,.cal-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.cal-week span{text-align:center;font-weight:800;color:#8c7564;font-size:10px;padding:6px 0}
+.cal-day{border:1px solid transparent;border-radius:9px;background:white;color:#2f3033;padding:5px 1px;min-height:56px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;cursor:pointer;min-width:0}
+.cal-day:hover{background:#fff8ee;border-color:#e2cfa9}
+.cal-day.is-selected{background:#812134;color:white;box-shadow:0 2px 10px #6f15222d}
+.cal-day.is-selected small{color:#ffebda}
+.cal-day.is-outside{opacity:.45;background:#fcfaf7}
+.cal-day strong{font-size:12px;font-weight:800}
+.cal-day small{font-size:9px;font-weight:600;color:#86735e;line-height:1.2;text-align:center;overflow-wrap:anywhere}
+.cal-day.is-full{outline:1px solid #ddb35b;outline-offset:-1px}
+.cal-footnote{font-size:10px;color:#867e72;line-height:1.7;margin:10px 3px 0}
+@media(max-width:620px){.cal-section{padding:13px 11px}.cal-grid{gap:9px}.cal-result .my-result{font-size:14px}.cal-day{min-height:50px}.cal-day small{font-size:8px}}
+@media(max-width:370px){.cal-grid{grid-template-columns:1fr}}
+@media print{.cal-section{display:none!important}}
+
+</style>
 </head>
 <body>
 <header class="top"><div class="brand"><div class="seal">✿</div><span>ချမ်းမြေ့သာ သာသနာ့ရိပ်သာ · Certificate Builder</span></div><nav class="topnav"><a href="index.html">ပင်မစာမျက်နှာ</a><a href="certificate-editor.html">Canvas Editor</a></nav></header>
@@ -58,6 +107,21 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 <div class="field"><label for="merit">ကုသိုလ်အဖြည့်</label><input id="merit" autocomplete="off" placeholder="ဥပမာ — မွေးနေ့ / နှစ်ပတ်လည်"></div>
 <div class="field wide"><label for="offering">လှူဒါန်းမှု (အပြာရောင် စာပိုဒ်)</label><textarea id="offering" rows="2" placeholder="ဥပမာ — မီးစက်တစ်လုံး၊ အလှူငွေ၊ ဆွမ်းနှင့် ပစ္စည်းလေးပါး"></textarea></div>
 </div>
+<section class="cal-section" aria-label="Gregorian နှင့် Myanmar calendar date converter">
+ <div class="cal-heading"><h2>မြန်မာပြက္ခဒိန် · Date Converter</h2><span class="cal-pill">Gregorian ⇄ Myanmar</span></div>
+ <p class="cal-subtitle">ရက်စွဲရွေးလိုက်ရုံဖြင့် မြန်မာနှစ်၊ လဆန်း/လဆုတ်နှင့် စနေနေ့/တနင်္လာနေ့ကို အလိုအလျောက်တွက်ပြီး Certificate ပုံထဲ ထည့်ပေးပါမယ်။</p>
+ <div class="cal-subheader">English Date → မြန်မာရက်စွဲ</div>
+ <div class="cal-grid"><div class="cal-input"><label for="gregDate">English / Gregorian Date</label><input type="date" id="gregDate" min="1900-01-01" max="2100-12-31" value="2026-10-10"></div><div class="cal-input"><label for="dateStyle">Footer Date စာပုံစံ</label><select id="dateStyle"><option value="full">မြန်မာ + English + နေ့</option><option value="my">မြန်မာရက်စွဲသာ</option><option value="en">English Date သာ</option><option value="both-en">Myanmar + English နေ့အမည်</option><option value="short">အတိုချုံး (ဘောင်အတွင်း)</option></select></div></div>
+ <div class="cal-tools"><button id="gregConvert" type="button">Convert Date</button><button id="calToday" type="button">ဒီနေ့ (မြန်မာစံတော်ချိန်)</button><button id="calExample" type="button">10 Oct 2026 နမူနာ</button></div>
+ <div class="cal-result" role="status" aria-live="polite"><div class="my-result" id="convertedMyanmar">—</div><div class="en-result" id="convertedEnglish">—</div><div class="be-result" id="convertedSasana"></div><div class="cal-tools"><button type="button" id="calCopy">မြန်မာရက်စွဲ Copy</button></div></div>
+ <label class="cal-checkrow"><input id="autoFooter" type="checkbox" checked> ရက်စွဲကို အောက်ခြေ အနီရောင်ဘောင်ထဲ အလိုအလျောက်ထည့်ရန်</label>
+ <label class="cal-checkrow"><input id="syncDay" type="checkbox"> စာပိုဒ်ထဲက “နေ့တွင် ကျရောက်သော” နေရာကိုလည်း အလိုအလျောက်ဖြည့်ရန်</label>
+ <div class="cal-subheader">မြန်မာရက်စွဲ → English Date</div>
+ <div class="cal-grid"><div class="cal-input"><label for="mmYear">မြန်မာနှစ် (ME)</label><input id="mmYear" type="text" inputmode="numeric" value="1388" maxlength="4"></div><div class="cal-input"><label for="mmMonth">မြန်မာလ</label><select id="mmMonth"></select></div><div class="cal-input"><label for="mmPhase">လဆန်း / လပြည့် / လဆုတ် / လကွယ်</label><select id="mmPhase"><option value="0">လဆန်း</option><option value="1">လပြည့်</option><option value="2">လဆုတ်</option><option value="3">လကွယ်</option></select></div><div class="cal-input"><label for="mmFortnight">ရက် (၁–၁၄)</label><input id="mmFortnight" type="text" inputmode="numeric" value="14" maxlength="2"></div></div>
+ <div class="cal-tools"><button id="mmConvert" type="button">မြန်မာရက်စွဲမှ English Date ပြန်တွက်ရန်</button></div><div id="calNotice" class="cal-alert" role="alert"></div>
+ <div class="cal-month" aria-label="လစဉ် မြန်မာပြက္ခဒိန်"><div class="cal-monthbar"><button type="button" id="monthPrev" aria-label="ယခင်လ">‹</button><strong id="monthTitle">October 2026</strong><button type="button" id="monthNext" aria-label="နောက်လ">›</button></div><div class="cal-week"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div class="cal-days" id="calDays"></div></div>
+ <p class="cal-footnote">မြန်မာပြက္ခဒိန်တွက်ချက်မှု: <a href="https://github.com/yan9a/mmcal" target="_blank" rel="noopener noreferrer">Yan Naing Aye · mmcal (MIT)</a>။ ရွေးထားသော Gregorian Date ကို မြန်မာစံတော်ချိန်အရ နေ့ရက်တစ်ခုအဖြစ် တွက်ပါသည်။ တရားဝင် ပွဲတော်/ဥပုသ်ကြေညာချက် မတူနိုင်သဖြင့် အရေးကြီးရက်စွဲများကို သက်ဆိုင်ရာ တရားဝင်ပြက္ခဒိန်နှင့် ထပ်စစ်ပါ။</p>
+</section>
 <hr class="rule"><div class="formTitle"><h2>စာပိုဒ် Layout</h2><span>Center Alignment</span></div>
 <div class="field wide"><label for="footerDate">အောက်ခြေ အနီရောင်ဘောင်ထဲက ရက်စွဲ (အဖြူရောင်စာသား)</label><input id="footerDate" autocomplete="off" placeholder="ဥပမာ — ၁၃၈၈ ခုနှစ်၊ တော်သလင်းလပြည့်ကျော် (၁၄) ရက်၊ ၁၀-၁၀-၂၀၂၆ စနေနေ့"><span class="hint">ဒီစာသားက အောက်ခြေ အနီရောင် Date Bar ထဲမှာ အဖြူရောင်နဲ့ Center Align ပေါ်ပါမယ်။</span></div>
 <div class="settingRow"><label for="dateFont">အောက်ခြေ ရက်စွဲစာအရွယ်အစား</label><input id="dateFont" type="range" min="11" max="30" value="21" step="1"><span class="val" id="dateFontVal">21 px</span></div>
@@ -68,6 +132,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 <div class="toolbar"><button class="btn" id="copy">စာပိုဒ် Copy</button><button class="btn" id="reset">Form ရှင်းရန်</button></div>
 <hr class="rule"><div class="formTitle"><h2>အလိုအလျောက် စာပိုဒ်</h2><span>အလယ်ညှိပုံစံ</span></div><textarea class="generated" id="paragraph" readonly spellcheck="false"></textarea><p class="status" id="status" aria-live="polite"></p><p class="privacy">ဖြည့်ထားတဲ့အချက်အလက်တွေကို Server သို့ မပို့ပါ။ ဒီ Browser tab ပိတ်တဲ့အခါ Form data ကို အလိုအလျောက် ဖျက်ပေးပါတယ်။</p>
 </section></main>
+<script src="js/ceMmDateTime.js?v=20261112a"></script>
 <script>
 (()=>{
 'use strict';
@@ -105,7 +170,13 @@ function paintFooterDate(){
   const ctx=document.createElement('canvas').getContext('2d');
   let fs=dateCfg.font;
   if(ctx){for(;fs>10;fs--){ctx.font=`800 ${fs}px "Noto Sans Myanmar", "Myanmar Text", sans-serif`;if(ctx.measureText(value).width<=dateCfg.w-10)break;}}
-  box.style.fontSize=fs+'px';box.dataset.dateFont=String(fs);
+  // Use the same horizontal fit as canvas.fillText(maxWidth) for long Myanmar dates.
+   if(ctx && value){ctx.font=`800 ${fs}px "Noto Sans Myanmar", "Myanmar Text", sans-serif`;
+    const measured=ctx.measureText(value).width;
+    label.style.transform=measured>dateCfg.w-10?`scaleX(${(dateCfg.w-10)/measured})`:'none';
+   } else label.style.transform='none';
+   label.style.transformOrigin='center center';
+   box.style.fontSize=fs+'px';box.dataset.dateFont=String(fs);
   $('dateFontVal').textContent=fs+(fs<dateCfg.font?' px (auto fit)':' px');
  }
  function paint(){const copy=$('copyblock');copy.replaceChildren();for(const part of pieces()){const el=document.createElement('p');el.className=part.class;el.textContent=part.text;copy.appendChild(el);}copy.style.left=cfg.x+'px';copy.style.top=cfg.y+'px';copy.style.width=cfg.w+'px';copy.style.height='418px';copy.style.fontWeight='700';fit();
@@ -154,5 +225,120 @@ $('download').addEventListener('click',()=>exportPNG().catch(err=>{console.error
 $('print').addEventListener('click',()=>window.print());
 const ro=new ResizeObserver(rescale);ro.observe($('viewport'));window.addEventListener('resize',rescale);if(document.fonts?.ready)document.fonts.ready.then(paintFooterDate).catch(()=>{});paint();rescale();
 })();
+</script>
+<script>
+/* Chan Myae Thar Gregorian ⇄ Myanmar calendar UI.
+   Conversion kernel: ceDateTime and ceMmDateTime by Yan Naing Aye (MIT).
+   All date calculations use proleptic Gregorian calendar days at noon;
+   the user's device time zone cannot shift the selected date. */
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+if(!$('gregDate') || typeof ceMmDateTime==='undefined' || typeof ceDateTime==='undefined'){
+ if($('calNotice'))$('calNotice').textContent='ပြက္ခဒိန်တွက်ချက်မှုကို မဖွင့်နိုင်ပါ။ Page ကို ပြန်ဖွင့်ပါ။';return;
+}
+const DIG='၀၁၂၃၄၅၆၇၈၉';
+const NAMES={0:'ပထမ ဝါဆို',1:'တန်ခူး',2:'ကဆုန်',3:'နယုန်',4:'ဝါဆို',5:'ဝါခေါင်',6:'တော်သလင်း',7:'သီတင်းကျွတ်',8:'တန်ဆောင်မုန်း',9:'နတ်တော်',10:'ပြာသို',11:'တပို့တွဲ',12:'တပေါင်း',13:'နှောင်းတန်ခူး',14:'နှောင်းကဆုန်'};
+const WD=['တနင်္ဂနွေနေ့','တနင်္လာနေ့','အင်္ဂါနေ့','ဗုဒ္ဓဟူးနေ့','ကြာသပတေးနေ့','သောကြာနေ့','စနေနေ့'];
+const ENWD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const ROOT_MONTHS=[1,2,3,0,4,5,6,7,8,9,10,11,12,13,14];
+const nmy=v=>String(v).replace(/\d/g,d=>DIG[Number(d)]);
+const ascii=s=>String(s).replace(/[၀-၉]/g,d=>String(DIG.indexOf(d)));
+const num=s=>Number(ascii(s));
+const pad=n=>String(n).padStart(2,'0');
+const isoFrom=(y,m,d)=>`${y}-${pad(m)}-${pad(d)}`;
+const inRange=y=>Number.isInteger(y)&&y>=1900&&y<=2100;
+function parseISO(raw){const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(raw||'');if(!match)return null;const y=+match[1],m=+match[2],d=+match[3];const date=new Date(Date.UTC(y,m-1,d));if(!inRange(y)||date.getUTCFullYear()!==y||date.getUTCMonth()+1!==m||date.getUTCDate()!==d)return null;return {y,m,d,wd:date.getUTCDay(),iso:raw};}
+function mmFromGregorian(iso){const x=parseISO(iso);if(!x)throw Error('English ရက်စွဲကို မှန်ကန်စွာ ရွေးပါ (1900–2100)။');
+ const j=ceDateTime.w2j(x.y,x.m,x.d,12,0,0,1),m=ceMmDateTime.j2m(j);
+ return {...x,j,year:m.my,month:m.mm,day:m.md,yearType:m.myt,phase:ceMmDateTime.cal_mp(m.md,m.mm,m.myt),fortnight:ceMmDateTime.cal_mf(m.md),sasana:ceMmDateTime.my2sy(m.my,m.mm,m.md,0)};}
+function phaseLabel(x){return x.phase===0?'လဆန်း '+nmy(x.fortnight):x.phase===1?'လပြည့်':x.phase===2?'လပြည့်ကျော် '+nmy(x.fortnight):'လကွယ်';}
+function phaseLong(x){return x.phase===0?'လဆန်း '+nmy(x.fortnight)+' ရက်':x.phase===1?'လပြည့်နေ့':x.phase===2?'လပြည့်ကျော် ('+nmy(x.fortnight)+') ရက်':'လကွယ်နေ့';}
+function monthName(x){if(x.month===4 && x.yearType>0)return 'ဒုတိယ ဝါဆို';return NAMES[x.month]||'မသိသောလ';}
+function myanmarLabel(x){return `${nmy(x.year)} ခုနှစ်၊ ${monthName(x)}${phaseLong(x)}၊ ${WD[x.wd]}`;}
+function englishLabel(x){return `${x.d} ${MONTHS_EN[x.m-1]} ${x.y} · ${ENWD[x.wd]}`;}
+function footerLabel(x){const dd=`${pad(x.d)}-${pad(x.m)}-${x.y}`;
+ const my=`${nmy(x.year)} ခုနှစ်၊ ${monthName(x)}${phaseLong(x)}`;
+ switch($('dateStyle').value){
+ case 'my':return `${my}၊ ${WD[x.wd]}`;
+ case 'en':return `${dd} · ${ENWD[x.wd]}`;
+ case 'both-en':return `${my} · ${dd} (${ENWD[x.wd]})`;
+ case 'short':return `${monthName(x)}${phaseLabel(x)}၊ ${nmy(dd)}`;
+ default:return `${my}၊ [${dd}] ${WD[x.wd]}`;
+ }}
+let selected=null,monthCursor={year:2026,month:10},manualMode=false;
+const notice=(msg='')=>{$('calNotice').textContent=msg;};
+function populateMonths(year,selectedMonth){
+ const t=ceMmDateTime.cal_my(year).myt,select=$('mmMonth');select.replaceChildren();
+ for(const month of ROOT_MONTHS){if(month===0&&!t)continue;
+ const opt=new Option(month===4&&t?'ဒုတိယ ဝါဆို':NAMES[month],String(month));select.append(opt);}
+ if([...select.options].some(o=>Number(o.value)===selectedMonth))select.value=String(selectedMonth);
+ else select.value='1';
+}
+function fillReverse(x){$('mmYear').value=String(x.year);populateMonths(x.year,x.month);$('mmPhase').value=String(x.phase);$('mmFortnight').value=String(x.fortnight);toggleFortnight();}
+function toggleFortnight(){const special=['1','3'].includes($('mmPhase').value);$('mmFortnight').disabled=special;if(special)$('mmFortnight').value='15';}
+function setInputs(x){selected=x;$('gregDate').value=x.iso;fillReverse(x);$('convertedMyanmar').textContent=myanmarLabel(x);$('convertedEnglish').textContent=englishLabel(x);
+ $('convertedSasana').textContent=`သာသနာနှစ် ${nmy(x.sasana)} · မြန်မာနှစ် ${nmy(x.year)} · ${x.yearType?'ဝါထပ်နှစ်':'သာမန်နှစ်'}`;
+ if($('autoFooter').checked){$('footerDate').value=footerLabel(x);$('footerDate').dispatchEvent(new Event('input',{bubbles:true}));}
+ if($('syncDay').checked){$('day').value=nmy(`${pad(x.d)}-${pad(x.m)}-${x.y}`);$('day').dispatchEvent(new Event('input',{bubbles:true}));}
+ notice();renderMonth();}
+function chooseGregorian(raw){try{const x=mmFromGregorian(raw);monthCursor={year:x.y,month:x.m};setInputs(x);}catch(e){notice(e.message);}}
+function convertMyanmar(){try{
+ const year=num($('mmYear').value),month=Number($('mmMonth').value),phase=Number($('mmPhase').value),fortnight=num($('mmFortnight').value);
+ if(!Number.isInteger(year)||year<1250||year>1462)throw Error('မြန်မာနှစ်ကို ၁၂၅၀ မှ ၁၄၆၂ အတွင်း ဖြည့်ပါ။');
+ if(!Number.isInteger(fortnight)||fortnight<1||fortnight>15)throw Error('လဆန်း/လဆုတ်ရက်ကို ၁ မှ ၁၅ အတွင်း ဖြည့်ပါ။');
+ if((phase===0||phase===2)&&fortnight===15)throw Error('လဆန်း ၁၅ ရက် / လဆုတ် ၁၅ ရက်အစား လပြည့် / လကွယ်ကို ရွေးပါ။');
+ const myt=ceMmDateTime.cal_my(year).myt;
+ if(month===0&&!myt)throw Error('ဒီနှစ်မှာ ပထမဝါဆို မရှိပါ။');
+ const md=ceMmDateTime.cal_md(fortnight,phase,month,myt),max=ceMmDateTime.cal_mml(month,myt);
+ if(md<1||md>max)throw Error('ရွေးထားတဲ့လမှာ ဒီရက်စွဲ မရှိပါ။');
+ const jd=ceMmDateTime.m2j(year,month,md),verify=ceMmDateTime.j2m(jd);
+ if(verify.my!==year||verify.mm!==month||verify.md!==md||ceMmDateTime.cal_mp(md,month,myt)!==phase)throw Error('ဒီမြန်မာရက်စွဲကို အတည်ပြုလို့ မရပါ။ လနှင့် လဆန်း/လဆုတ်ရက်ကို စစ်ပါ။');
+ const g=ceDateTime.j2w(jd,1),iso=isoFrom(g.y,g.m,g.d);const test=mmFromGregorian(iso);
+ if(test.year!==year||test.month!==month||test.day!==md)throw Error('ပြန်လည်တွက်ချက်မှု မကိုက်ညီပါ။');
+ chooseGregorian(iso);
+ }catch(e){notice(e.message);}}
+function calendarCell(iso,offset=false){const el=document.createElement('button');el.type='button';el.className='cal-day'+(offset?' is-outside':'');
+ try{const z=mmFromGregorian(iso);if(z.phase===1)el.classList.add('is-full');
+ const n=document.createElement('strong'),small=document.createElement('small');n.textContent=String(z.d);small.textContent=phaseLabel(z);el.append(n,small);el.title=`${englishLabel(z)} | ${myanmarLabel(z)}`;
+ if(selected?.iso===iso){el.classList.add('is-selected');el.setAttribute('aria-pressed','true');}
+ el.addEventListener('click',()=>chooseGregorian(iso));
+ }catch{el.disabled=true;}
+ return el;}
+function renderMonth(){let {year,month}=monthCursor;if(!inRange(year))return;
+ $('monthTitle').textContent=`${MONTHS_EN[month-1]} ${year}`;
+ const days=$('calDays');days.replaceChildren();const start=new Date(Date.UTC(year,month-1,1)).getUTCDay();
+ const daysInMonth=new Date(Date.UTC(year,month,0)).getUTCDate();
+ const total=Math.ceil((start+daysInMonth)/7)*7;
+ for(let i=0;i<total;i++){
+ const d=new Date(Date.UTC(year,month-1,1-start+i));
+ const iso=isoFrom(d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate());
+ days.appendChild(calendarCell(iso,d.getUTCMonth()+1!==month));
+ }}
+function moveMonth(delta){let d=new Date(Date.UTC(monthCursor.year,monthCursor.month-1+delta,1));
+ monthCursor={year:d.getUTCFullYear(),month:d.getUTCMonth()+1};renderMonth();}
+function todayMyanmarTime(){const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Yangon',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const d=Object.fromEntries(p.filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return `${d.year}-${d.month}-${d.day}`;}
+$('gregDate').addEventListener('input',e=>{if(e.target.value)chooseGregorian(e.target.value);});
+$('gregConvert').addEventListener('click',()=>chooseGregorian($('gregDate').value));
+$('mmConvert').addEventListener('click',convertMyanmar);
+$('mmYear').addEventListener('change',()=>{const year=num($('mmYear').value);if(Number.isInteger(year)&&year>=1250&&year<=1462){const current=Number($('mmMonth').value);populateMonths(year,current);convertMyanmar();}});
+$('mmMonth').addEventListener('change',convertMyanmar);
+$('mmPhase').addEventListener('change',()=>{toggleFortnight();convertMyanmar();});
+$('mmFortnight').addEventListener('change',convertMyanmar);
+$('monthPrev').addEventListener('click',()=>moveMonth(-1));$('monthNext').addEventListener('click',()=>moveMonth(1));
+$('calToday').addEventListener('click',()=>chooseGregorian(todayMyanmarTime()));
+$('calExample').addEventListener('click',()=>chooseGregorian('2026-10-10'));
+$('dateStyle').addEventListener('change',()=>{if(selected){if($('autoFooter').checked){$('footerDate').value=footerLabel(selected);$('footerDate').dispatchEvent(new Event('input',{bubbles:true}));}}});
+$('autoFooter').addEventListener('change',()=>{if($('autoFooter').checked&&selected){$('footerDate').value=footerLabel(selected);$('footerDate').dispatchEvent(new Event('input',{bubbles:true}));}});
+$('syncDay').addEventListener('change',()=>{if($('syncDay').checked&&selected){$('day').value=nmy(`${pad(selected.d)}-${pad(selected.m)}-${selected.y}`);$('day').dispatchEvent(new Event('input',{bubbles:true}));}});
+// Preserve manual footer editing; auto date is opt-in afterwards.
+$('footerDate').addEventListener('input',e=>{if(e.isTrusted&&$('autoFooter').checked){$('autoFooter').checked=false;notice('ကိုယ်တိုင်ရေးထားတဲ့ Footer Date ကို ထိန်းသိမ်းထားပါမယ်။ Auto ပြန်ဖွင့်နိုင်ပါတယ်။');}});
+$('calCopy').addEventListener('click',async()=>{if(!selected)return;try{await navigator.clipboard.writeText(myanmarLabel(selected));notice('မြန်မာရက်စွဲ ကူးယူပြီးပါပြီ။');}catch{notice('Copy မရပါ။ Browser permission ကို စစ်ပါ။');}});
+$('reset').addEventListener('click',()=>queueMicrotask(()=>{if(selected&&$('autoFooter').checked){$('footerDate').value=footerLabel(selected);$('footerDate').dispatchEvent(new Event('input',{bubbles:true}));}}));
+chooseGregorian('2026-10-10');
+window.__cmtMyanmarCalendar={convert:chooseGregorian,getSelected:()=>selected};
+})();
+
 </script>
 </body></html>
